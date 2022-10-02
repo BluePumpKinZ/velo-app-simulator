@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Vehicle</title>
+</head>
+<body>
+<h2>Vehicle details</h2>
+<dl th:object="${vehicle}">
+  <dt>id</dt>
+  <dd th:text="*{id}"></dd>
+  <dt>serial number</dt>
+  <dd th:text="*{serialNumber}"></dd>
+</dl>
+
+</body>
+</html>
