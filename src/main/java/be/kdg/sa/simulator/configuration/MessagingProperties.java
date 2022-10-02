@@ -1,4 +1,4 @@
-package be.kdg.sa.simulator;
+package be.kdg.sa.simulator.configuration;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,6 +15,6 @@ import org.springframework.context.annotation.Configuration;
 @Getter
 @Setter
 @NoArgsConstructor
-public class ConfigProperties {
+public class MessagingProperties {
 	private String routingKey;
 }

@@ -1,6 +1,6 @@
 package be.kdg.sa.simulator.services;
 
-import be.kdg.sa.simulator.ConfigProperties;
+import be.kdg.sa.simulator.configuration.MessagingProperties;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Component;
 
@@ -11,9 +11,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class VehicleLocationSender {
 	private final RabbitTemplate rabbitTemplate;
-	private final ConfigProperties configProperties;
+	private final MessagingProperties configProperties;
 	
-	public VehicleLocationSender (RabbitTemplate rabbitTemplate, ConfigProperties configProperties) {
+	public VehicleLocationSender (RabbitTemplate rabbitTemplate, MessagingProperties configProperties) {
 		this.rabbitTemplate = rabbitTemplate;
 		this.configProperties = configProperties;
 	}
