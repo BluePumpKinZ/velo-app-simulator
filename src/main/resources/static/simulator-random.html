@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Bootstrap Example</title>
+    <title>Simulator Random</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -59,26 +59,29 @@
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group">
+                    <div class="form-group col-md-6 ">
                         <label for="ipMessageDelay">Gemiddeld delay tussen de berichten</label>
                         <input type="number" class="form-control" id="ipMessageDelay" placeholder="1000">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-6">
                         <label for="ipDelayVariation">Grootte van random variatie op dit delay</label>
                         <input type="number" class="form-control" id="ipDelayVariation" placeholder="200">
                     </div>
                 </div>
+                <label>latitude range (random generatie binnen deze grenzen)</label>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label>latitude range (random generatie binnen deze grenzen)</label>
                         <label for="ipLatitudeRangeStart">min</label>
                         <input type="number" class="form-control" id="ipLatitudeRangeStart" placeholder="51.0">
+                    </div>
+                    <div class="form-group col-md-6">
                         <label for="ipLatitudeRangeEnd">max</label>
                         <input type="number" class="form-control" id="ipLatitudeRangeEnd" placeholder="51.2">
+
                     </div>
                 </div>
+                <label>longitude range (random generatie binnen deze grenzen)</label>
                 <div class="form-row">
-                    <label>longitude range (random generatie binnen deze grenzen)</label>
                     <div class="form-group col-md-6">
                         <label for="ipLongitudeRangeStart">min</label>
                         <input type="number" class="form-control" id="ipLongitudeRangeStart" placeholder="51.0">
@@ -88,20 +91,19 @@
                         <input type="number" class="form-control" id="ipLongitudeRangeEnd" placeholder="51.2">
                     </div>
                 </div>
-        </div>
-        <button type="submit" class="btn btn-primary">Check & Generate</button>
-        </form>
-        <p class="d-none text-primary">20 instructies geladen</p>
-        <p class="d-none text-danger">Fout: x</p>
-        <hr>
-        <h3>Console</h3>
-        <p>Here you can see the result of the simulation.</p>
-        <textarea class="form-control" rows="5" id="result" name="result" readonly></textarea>
+                <button type="submit" class="btn btn-primary">Check & Generate</button>
+            </form>
+            <p class="d-none text-primary">20 instructies geladen</p>
+            <p class="d-none text-danger">Fout: x</p>
+            <hr>
+            <h3>Console</h3>
+            <p>Here you can see the result of the simulation.</p>
+            <textarea class="form-control" rows="5" id="result" name="result" readonly></textarea>
 
+        </div>
+        <div class="col-sm-2">
+        </div>
     </div>
-    <div class="col-sm-2">
-    </div>
-</div>
 </div>
 
 <footer class="container-fluid text-center">
