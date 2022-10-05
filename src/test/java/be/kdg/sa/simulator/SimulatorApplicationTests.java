@@ -1,6 +1,6 @@
 package be.kdg.sa.simulator;
 
-import be.kdg.sa.simulator.services.VehicleLocationSender;
+import be.kdg.sa.simulator.messaging.senders.VehicleLocationSender;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,11 +14,6 @@ class SimulatorApplicationTests {
 	
 	@Autowired
 	VehicleLocationSender sender;
-	
-	@Test
-	void testGreetingSender() {
-		sender.send("Dag omaatje");
-	}
 	
 	
 }
