@@ -11,14 +11,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class VehicleLocationSender {
 	private final RabbitTemplate rabbitTemplate;
-	private final MessagingProperties configProperties;
+	private final MessagingProperties messagingProperties;
 	
-	public VehicleLocationSender (RabbitTemplate rabbitTemplate, MessagingProperties configProperties) {
+	public VehicleLocationSender (RabbitTemplate rabbitTemplate, MessagingProperties messagingProperties) {
 		this.rabbitTemplate = rabbitTemplate;
-		this.configProperties = configProperties;
+		this.messagingProperties = messagingProperties;
 	}
 	
 	public void send (String message) {
-		rabbitTemplate.convertAndSend (configProperties.getRoutingKey (), message);
+		rabbitTemplate.convertAndSend (messagingProperties.getRoutingKey (), message);
 	}
 }
