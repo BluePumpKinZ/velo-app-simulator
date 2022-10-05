@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li><a href="index.html">Home</a></li>
+                <li class="active"><a href="simulator-random.html">Genereer x Random</a></li>
+                <li><a href="simulator-generator.html">Genereer x Generator</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid text-center">
+    <div class="row content">
+        <div class="col-sm-2">
+        </div>
+        <div class="col-sm-8 text-left">
+            <h1>Simulator Velo x Random</h1>
+            <p>Upload a config file here.</p>
+            <form action="/simulator-random" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="file">File:</label>
+                    <input type="file" class="form-control" id="file" name="file" required>
+                </div>
+                <button type="submit" class="btn btn-default">Haal settings op</button>
+            </form>
+            <hr>
+            <h2>Settings</h2>
+            <p>Here you can see the settings of the config file.</p>
+            <form>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="ipTimeperiod">Tijdsperiode van generatie in min</label>
+                        <input type="number" class="form-control" id="ipTimeperiod" placeholder="60">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="ipAantalUsers">Aantal users die in dezelfde periode rides uitvoeren</label>
+                        <input type="number" class="form-control" id="ipAantalUsers" placeholder="100">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="ipMessageDelay">Gemiddeld delay tussen de berichten</label>
+                        <input type="number" class="form-control" id="ipMessageDelay" placeholder="1000">
+                    </div>
+                    <div class="form-group">
+                        <label for="ipDelayVariation">Grootte van random variatie op dit delay</label>
+                        <input type="number" class="form-control" id="ipDelayVariation" placeholder="200">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>latitude range (random generatie binnen deze grenzen)</label>
+                        <label for="ipLatitudeRangeStart">min</label>
+                        <input type="number" class="form-control" id="ipLatitudeRangeStart" placeholder="51.0">
+                        <label for="ipLatitudeRangeEnd">max</label>
+                        <input type="number" class="form-control" id="ipLatitudeRangeEnd" placeholder="51.2">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <label>longitude range (random generatie binnen deze grenzen)</label>
+                    <div class="form-group col-md-6">
+                        <label for="ipLongitudeRangeStart">min</label>
+                        <input type="number" class="form-control" id="ipLongitudeRangeStart" placeholder="51.0">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="ipLongitudeRangeEnd">max</label>
+                        <input type="number" class="form-control" id="ipLongitudeRangeEnd" placeholder="51.2">
+                    </div>
+                </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Check & Generate</button>
+        </form>
+        <p class="d-none text-primary">20 instructies geladen</p>
+        <p class="d-none text-danger">Fout: x</p>
+        <hr>
+        <h3>Console</h3>
+        <p>Here you can see the result of the simulation.</p>
+        <textarea class="form-control" rows="5" id="result" name="result" readonly></textarea>
+
+    </div>
+    <div class="col-sm-2">
+    </div>
+</div>
+</div>
+
+<footer class="container-fluid text-center">
+    <p>Maxim Derboven & Jonas Leijzen</p>
+    <p>Project SA * Velo Simulator</p>
+</footer>
+
+</body>
+</html>
