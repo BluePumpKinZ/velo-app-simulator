@@ -4,10 +4,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 
-/**
- * Jonas Leijzen
- * 24/10/2022
- */
+
 @Component
 public class SimulatorCommandExecuter {
 	

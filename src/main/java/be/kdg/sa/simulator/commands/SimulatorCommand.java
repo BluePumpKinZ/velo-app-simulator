@@ -7,10 +7,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
-/**
- * Jonas Leijzen
- * 24/10/2022
- */
+
 public abstract class SimulatorCommand<TParams extends SimulatorCommandParams> {
 	
 	private final String commandName;

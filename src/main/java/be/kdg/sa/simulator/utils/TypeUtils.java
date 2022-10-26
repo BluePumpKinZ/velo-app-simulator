@@ -4,10 +4,6 @@ import org.reflections.Reflections;
 
 import java.util.List;
 
-/**
- * Jonas Leijzen
- * 25/10/2022
- */
 public class TypeUtils {
 	
 	public static <T> List<Class<? extends T>> getAllSubTypesOfType (Class<T> type) {

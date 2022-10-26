@@ -6,10 +6,6 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 
-/**
- * Jonas Leijzen
- * 25/10/2022
- */
 
 public interface RideVeloApi extends VeloApi {
 	

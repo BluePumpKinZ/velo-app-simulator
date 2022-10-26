@@ -5,10 +5,6 @@ import be.kdg.sa.simulator.exceptions.VeloApiNotFoundException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-/**
- * Jonas Leijzen
- * 25/10/2022
- */
 @Component
 public class VeloApiContainer {
 	

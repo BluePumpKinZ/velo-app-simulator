@@ -2,10 +2,7 @@ package be.kdg.sa.simulator.commands;
 
 import org.springframework.stereotype.Component;
 
-/**
- * Jonas Leijzen
- * 24/10/2022
- */
+
 public final class UnknownCommandCommand extends SimulatorCommand<UnknownCommandCommand.UnknownCommandParams> {
 	
 	public static class UnknownCommandParams implements SimulatorCommandParams {

@@ -10,10 +10,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.util.List;
 
-/**
- * Jonas Leijzen
- * 25/10/2022
- */
 @Component
 public class VeloApis {
 	@Value ("${velo.url}")

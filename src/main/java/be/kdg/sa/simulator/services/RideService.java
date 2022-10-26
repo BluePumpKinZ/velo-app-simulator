@@ -8,10 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Service;
 
-/**
- * Jonas Leijzen
- * 25/10/2022
- */
 @Service
 public class RideService {
 
