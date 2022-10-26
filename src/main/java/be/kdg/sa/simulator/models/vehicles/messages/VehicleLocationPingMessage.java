@@ -2,10 +2,7 @@ package be.kdg.sa.simulator.models.vehicles.messages;
 
 import be.kdg.sa.simulator.models.vehicles.VehicleCall;
 
-/**
- * Jonas Leijzen
- * 5/10/2022
- */
+
 public final class VehicleLocationPingMessage extends VehicleCall {
 	
 	private final long timeStamp;

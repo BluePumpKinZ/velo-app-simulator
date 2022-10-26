@@ -9,10 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Component;
 
-/**
- * Jonas Leijzen
- * 2/10/2022
- */
+
 @Component
 public class VehicleLocationSender {
 	private final RabbitTemplate rabbitTemplate;

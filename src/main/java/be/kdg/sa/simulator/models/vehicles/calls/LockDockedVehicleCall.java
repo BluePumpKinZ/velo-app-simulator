@@ -1,9 +1,6 @@
 package be.kdg.sa.simulator.models.vehicles.calls;
 
-/**
- * Jonas Leijzen
- * 5/10/2022
- */
+
 public final class LockDockedVehicleCall extends LockVehicleCall {
 	
 	private final int stationId;
