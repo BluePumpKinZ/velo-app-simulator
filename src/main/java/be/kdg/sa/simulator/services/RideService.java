@@ -21,7 +21,7 @@ public class RideService {
 	}
 	
 	public Integer startRide (int stationId, int userId) throws IOException {
-		var event = new UnlockDockedVehicleCall (stationId, userId);
+		var event = new UnlockDockedVehicleCall (userId, stationId);
 		var call = rideVeloApi.startDockedRide (event);
 		
 		var response = call.execute ();
