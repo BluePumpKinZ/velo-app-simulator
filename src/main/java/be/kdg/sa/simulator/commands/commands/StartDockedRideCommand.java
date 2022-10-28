@@ -1,5 +1,7 @@
-package be.kdg.sa.simulator.commands;
+package be.kdg.sa.simulator.commands.commands;
 
+import be.kdg.sa.simulator.commands.SimulatorCommand;
+import be.kdg.sa.simulator.commands.SimulatorCommandParams;
 import be.kdg.sa.simulator.exceptions.CommandParamsParseException;
 import be.kdg.sa.simulator.services.RideService;
 import org.springframework.stereotype.Component;

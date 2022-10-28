@@ -1,5 +1,8 @@
-package be.kdg.sa.simulator.commands;
+package be.kdg.sa.simulator.commands.commands;
 
+
+import be.kdg.sa.simulator.commands.SimulatorCommand;
+import be.kdg.sa.simulator.commands.SimulatorCommandParams;
 
 public final class UnknownCommandCommand extends SimulatorCommand<UnknownCommandCommand.UnknownCommandParams> {
 	

@@ -1,5 +1,6 @@
 package be.kdg.sa.simulator.commands;
 
+import be.kdg.sa.simulator.commands.commands.UnknownCommandCommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -22,7 +23,7 @@ public class SimulatorCommandExecuter {
 			return "SUCCES: " + commands.stream()
 					.filter(command -> command.getCommandName().equalsIgnoreCase (commandName))
 					.findFirst()
-					.orElse(new UnknownCommandCommand(commandName))
+					.orElse(new UnknownCommandCommand (commandName))
 					.execute(params);
 		} catch (IOException e) {
 			logger.error (e.getMessage(), e);
