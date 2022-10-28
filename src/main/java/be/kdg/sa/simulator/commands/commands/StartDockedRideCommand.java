@@ -21,11 +21,9 @@ public class StartDockedRideCommand extends SimulatorCommand<StartDockedRideComm
 	}
 	
 	public static class StartDockedRideCommandParams implements SimulatorCommandParams {
+		private static final Pattern PATTERN = Pattern.compile ("^\\(stationId: *(.*), *userId: *(.*)\\)$");
 		public int stationId;
 		public int userId;
-		
-		private static final Pattern PATTERN = Pattern.compile ("^\\(stationId: *(.*), *userId: *(.*)\\)$");
-		// (stationId: 5, userId: 7)
 		
 		@Override
 		public void setParams (String paramString) {
@@ -40,8 +38,8 @@ public class StartDockedRideCommand extends SimulatorCommand<StartDockedRideComm
 	
 	@Override
 	protected String execute (StartDockedRideCommandParams params) throws IOException {
-		var lockId = rideService.startRide (params.stationId, params.userId);
-		return "Started ride from lock: " + lockId;
+		var lockId = rideService.startDockedRide (params.stationId, params.userId);
+		return "Started docked ride from lock: " + lockId;
 	}
 	
 	

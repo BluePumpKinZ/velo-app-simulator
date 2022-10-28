@@ -3,12 +3,12 @@ package be.kdg.sa.simulator.commands;
 import be.kdg.sa.simulator.exceptions.CouldNotCreateCommandParamsException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-
 
 public abstract class SimulatorCommand<TParams extends SimulatorCommandParams> {
 	
