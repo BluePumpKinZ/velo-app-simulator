@@ -15,9 +15,8 @@ public final class DelayCommand extends SimulatorCommand<DelayCommand.DelayComma
 		public long delay;
 		
 		@Override
-		public SimulatorCommandParams setParams (String paramString) {
+		public void setParams (String paramString) {
 			delay = Long.parseLong(paramString);
-			return this;
 		}
 	}
 	
@@ -28,7 +27,7 @@ public final class DelayCommand extends SimulatorCommand<DelayCommand.DelayComma
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		return String.format ("Waited for %d seconds.", params.delay);
+		return String.format ("Waited for %d milliseconds.", params.delay);
 	}
 	
 }

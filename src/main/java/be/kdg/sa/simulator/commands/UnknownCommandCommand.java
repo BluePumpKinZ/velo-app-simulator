@@ -1,15 +1,12 @@
 package be.kdg.sa.simulator.commands;
 
-import org.springframework.stereotype.Component;
-
 
 public final class UnknownCommandCommand extends SimulatorCommand<UnknownCommandCommand.UnknownCommandParams> {
 	
 	public static class UnknownCommandParams implements SimulatorCommandParams {
 		
 		@Override
-		public SimulatorCommandParams setParams (String paramString) {
-			return this;
+		public void setParams (String paramString) {
 		}
 	}
 	

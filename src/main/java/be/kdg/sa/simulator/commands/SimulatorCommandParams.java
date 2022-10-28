@@ -3,6 +3,6 @@ package be.kdg.sa.simulator.commands;
 
 public interface SimulatorCommandParams {
 	
-	SimulatorCommandParams setParams (String paramString);
+	void setParams (String paramString);
 	
 }

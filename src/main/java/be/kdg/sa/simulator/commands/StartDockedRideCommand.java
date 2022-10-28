@@ -4,6 +4,7 @@ import be.kdg.sa.simulator.exceptions.CommandParamsParseException;
 import be.kdg.sa.simulator.services.RideService;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.util.regex.Pattern;
 
 
@@ -25,21 +26,20 @@ public class StartDockedRideCommand extends SimulatorCommand<StartDockedRideComm
 		// (stationId: 5, userId: 7)
 		
 		@Override
-		public SimulatorCommandParams setParams (String paramString) {
+		public void setParams (String paramString) {
 			var matcher = PATTERN.matcher (paramString);
 			if (!matcher.find ())
 				throw new CommandParamsParseException ("START_DOCKED_RIDE", paramString);
 			
 			stationId = Integer.parseInt (matcher.group (1));
 			userId = Integer.parseInt (matcher.group (2));
-			return this;
 		}
 	}
 	
 	@Override
-	protected String execute (StartDockedRideCommandParams params) {
+	protected String execute (StartDockedRideCommandParams params) throws IOException {
 		var lockId = rideService.startRide (params.stationId, params.userId);
-		return "Started ride with from lock: " + lockId;
+		return "Started ride from lock: " + lockId;
 	}
 	
 	
