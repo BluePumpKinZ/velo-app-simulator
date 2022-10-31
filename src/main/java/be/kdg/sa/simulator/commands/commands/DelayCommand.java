@@ -12,14 +12,10 @@ public final class DelayCommand extends SimulatorCommand<DelayCommand.DelayComma
 		super ("DELAY");
 	}
 	
-	public static class DelayCommandParams implements SimulatorCommandParams {
+	public static class DelayCommandParams extends SimulatorCommandParams {
 		
 		public long delay;
 		
-		@Override
-		public void setParams (String paramString) {
-			delay = Long.parseLong(paramString);
-		}
 	}
 	
 	@Override

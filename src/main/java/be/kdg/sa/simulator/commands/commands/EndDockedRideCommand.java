@@ -19,25 +19,13 @@ public class EndDockedRideCommand extends SimulatorCommand<EndDockedRideCommand.
 		this.rideService = rideService;
 	}
 	
-	public static class EndDockedRideCommandParams implements SimulatorCommandParams {
-		private static final Pattern PATTERN = Pattern.compile ("^\\(vehicleId: *(.*), *userId: *(.*), *defect: *(.*), *lockId: *(.*)\\)$");
+	public static class EndDockedRideCommandParams extends SimulatorCommandParams {
 		
 		public int vehicleId;
 		public int userId;
 		public boolean defect;
 		public int lockId;
 		
-		@Override
-		public void setParams (String paramString) {
-			var matcher = PATTERN.matcher (paramString);
-			if (!matcher.find ())
-				throw new CommandParamsParseException ("END_DOCKED_RIDE", paramString);
-			
-			vehicleId = Integer.parseInt (matcher.group (1));
-			userId = Integer.parseInt (matcher.group (2));
-			defect = Boolean.parseBoolean (matcher.group (3));
-			lockId = Integer.parseInt (matcher.group (4));
-		}
 	}
 	
 	@Override

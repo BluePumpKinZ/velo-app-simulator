@@ -6,11 +6,8 @@ import be.kdg.sa.simulator.commands.SimulatorCommandParams;
 
 public final class UnknownCommandCommand extends SimulatorCommand<UnknownCommandCommand.UnknownCommandParams> {
 	
-	public static class UnknownCommandParams implements SimulatorCommandParams {
-		
-		@Override
-		public void setParams (String paramString) {
-		}
+	public static class UnknownCommandParams extends SimulatorCommandParams {
+	
 	}
 	
 	private final String unknownCommandName;

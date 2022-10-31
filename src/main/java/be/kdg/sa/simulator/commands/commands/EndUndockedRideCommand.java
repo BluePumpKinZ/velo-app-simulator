@@ -19,9 +19,7 @@ public class EndUndockedRideCommand extends SimulatorCommand<EndUndockedRideComm
 		this.rideService = rideService;
 	}
 	
-	public static class EndUndockedRideCommandParams implements SimulatorCommandParams {
-		
-		private static final Pattern PATTERN = Pattern.compile ("^\\(vehicleId: *(.*), *userId: *(.*), *defect: *(.*), *longitude: *(.*), *latitude: *(.*)\\)$");
+	public static class EndUndockedRideCommandParams extends SimulatorCommandParams {
 		
 		public int vehicleId;
 		public int userId;
@@ -29,18 +27,6 @@ public class EndUndockedRideCommand extends SimulatorCommand<EndUndockedRideComm
 		public double latitude;
 		public double longitude;
 		
-		@Override
-		public void setParams (String paramString) {
-			var matcher = PATTERN.matcher (paramString);
-			if (!matcher.find ())
-				throw new CommandParamsParseException ("END_UNDOCKED_RIDE", paramString);
-			
-			vehicleId = Integer.parseInt (matcher.group (1));
-			userId = Integer.parseInt (matcher.group (2));
-			defect = Boolean.parseBoolean (matcher.group (3));
-			latitude = Double.parseDouble (matcher.group (4));
-			longitude = Double.parseDouble (matcher.group (5));
-		}
 	}
 	
 	@Override

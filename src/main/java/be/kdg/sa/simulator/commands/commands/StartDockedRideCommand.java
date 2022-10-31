@@ -20,20 +20,11 @@ public class StartDockedRideCommand extends SimulatorCommand<StartDockedRideComm
 		this.rideService = rideService;
 	}
 	
-	public static class StartDockedRideCommandParams implements SimulatorCommandParams {
-		private static final Pattern PATTERN = Pattern.compile ("^\\(stationId: *(.*), *userId: *(.*)\\)$");
+	public static class StartDockedRideCommandParams extends SimulatorCommandParams {
+		
 		public int stationId;
 		public int userId;
 		
-		@Override
-		public void setParams (String paramString) {
-			var matcher = PATTERN.matcher (paramString);
-			if (!matcher.find ())
-				throw new CommandParamsParseException ("START_DOCKED_RIDE", paramString);
-			
-			stationId = Integer.parseInt (matcher.group (1));
-			userId = Integer.parseInt (matcher.group (2));
-		}
 	}
 	
 	@Override
