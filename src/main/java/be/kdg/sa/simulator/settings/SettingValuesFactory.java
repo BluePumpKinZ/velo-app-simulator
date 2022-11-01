@@ -5,13 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.util.ResourceUtils;
 
 import java.io.*;
-import java.nio.file.Files;
 import java.util.Properties;
 
-/**
- * Jonas Leijzen
- * 1/11/2022
- */
 public class SettingValuesFactory {
 	
 	private static final Logger logger = LoggerFactory.getLogger (SettingValuesFactory.class);
