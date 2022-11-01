@@ -1,7 +1,7 @@
 package be.kdg.sa.simulator.controllers.mvc;
 
 import be.kdg.sa.simulator.services.SettingService;
-import be.kdg.sa.simulator.settings.SettingValues;
+import be.kdg.sa.simulator.simulation.settings.SimulationSettings;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -27,7 +27,7 @@ public class MvcSettingsController {
 	}
 	
 	@PostMapping (path = "/update")
-	public String updateSettings (@ModelAttribute("simSettings") SettingValues simSettings, BindingResult result, Model model) {
+	public String updateSettings (@ModelAttribute("simSettings") SimulationSettings simSettings, BindingResult result, Model model) {
 		if (result.hasErrors ())
 			return "settings";
 		settingService.setSettingValues (simSettings);

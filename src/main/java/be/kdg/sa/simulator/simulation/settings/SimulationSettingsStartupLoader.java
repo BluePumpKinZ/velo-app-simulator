@@ -1,4 +1,4 @@
-package be.kdg.sa.simulator.settings;
+package be.kdg.sa.simulator.simulation.settings;
 
 import be.kdg.sa.simulator.services.SettingService;
 import org.springframework.stereotype.Component;
@@ -6,11 +6,11 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 
 @Component
-public class SettingValuesStartupLoader {
+public class SimulationSettingsStartupLoader {
 	
 	private final SettingService settingService;
 	
-	public SettingValuesStartupLoader (SettingService settingService) {
+	public SimulationSettingsStartupLoader (SettingService settingService) {
 		this.settingService = settingService;
 	}
 	
