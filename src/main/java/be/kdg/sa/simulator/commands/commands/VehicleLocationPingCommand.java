@@ -2,10 +2,13 @@ package be.kdg.sa.simulator.commands.commands;
 
 import be.kdg.sa.simulator.commands.SimulatorCommand;
 import be.kdg.sa.simulator.commands.SimulatorCommandParams;
+import be.kdg.sa.simulator.models.vehicles.messages.VehicleLocationPingMessage;
 import be.kdg.sa.simulator.services.VehicleService;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
+@Component
 public class VehicleLocationPingCommand extends SimulatorCommand<VehicleLocationPingCommand.VehicleLocationPingCommandParams> {
 	
 	private final VehicleService vehicleService;
@@ -25,7 +28,9 @@ public class VehicleLocationPingCommand extends SimulatorCommand<VehicleLocation
 	
 	@Override
 	protected String execute (VehicleLocationPingCommandParams params) throws IOException {
-		return null;
+		var pingMessage = new VehicleLocationPingMessage (params.vehicleId, params.latitude, params.longitude);
+		vehicleService.updateVehicleLocation(pingMessage);
+		return "Vehicle location ping sent";
 	}
 	
 }

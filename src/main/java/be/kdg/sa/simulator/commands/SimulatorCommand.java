@@ -1,5 +1,6 @@
 package be.kdg.sa.simulator.commands;
 
+import be.kdg.sa.simulator.commands.commands.UnknownCommandCommand;
 import be.kdg.sa.simulator.exceptions.CouldNotCreateCommandParamsException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,7 +26,8 @@ public abstract class SimulatorCommand<TParams extends SimulatorCommandParams> {
 	
 	public String execute(String paramString) throws IOException {
 		var params = createParams();
-		params.setParams (paramString);
+		if (!(params instanceof UnknownCommandCommand.UnknownCommandParams))
+			params.setParams (paramString);
 		return execute (params);
 	}
 	

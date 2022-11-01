@@ -1,0 +1,8 @@
+seconds=60
+concurrentRides=5
+delayDuration=1000
+delayVariation=500
+minLatitude=51.1
+maxLatitude=51.3
+minLongitude=4.2
+maxLongitude=4.4
