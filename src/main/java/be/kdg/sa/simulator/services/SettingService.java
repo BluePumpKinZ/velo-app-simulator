@@ -9,21 +9,21 @@ import org.springframework.stereotype.Service;
 public class SettingService {
 
 	private final SettingsProperties settingsProperties;
-	private static SimulationSettings simulationSettingValues;
+	private static SimulationSettings simulationSettings;
 	
 	public SettingService (SettingsProperties settingsProperties) {
 		this.settingsProperties = settingsProperties;
 	}
 	
-	public SimulationSettings getSettingValues () {
-		if (simulationSettingValues == null)
-			simulationSettingValues = SimulationSettingsFactory.fromFile(settingsProperties.getFile ());
+	public SimulationSettings getSimulationSettings () {
+		if (simulationSettings == null)
+			simulationSettings = SimulationSettingsFactory.fromFile(settingsProperties.getFile ());
 		
-		return simulationSettingValues;
+		return simulationSettings;
 	}
 	
-	public void setSettingValues (SimulationSettings simulationSettingValues) {
-		SettingService.simulationSettingValues = simulationSettingValues;
+	public void setSimulationSettings (SimulationSettings simulationSettingValues) {
+		SettingService.simulationSettings = simulationSettingValues;
 	}
 	
 

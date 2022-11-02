@@ -1,6 +1,8 @@
 package be.kdg.sa.simulator.simulation.random;
 
-import be.kdg.sa.simulator.simulation.random.actions.RandomSimulationAction;
+import be.kdg.sa.simulator.simulation.random.generators.RandomSimulationDelayGenerator;
+import be.kdg.sa.simulator.simulation.random.providers.RandomSimulationValidUserIdProvider;
+import be.kdg.sa.simulator.simulation.random.providers.RandomSimulationValidVehicleIdProvider;
 import be.kdg.sa.simulator.simulation.settings.SimulationSettings;
 import be.kdg.sa.simulator.simulation.progress.SimulationProgress;
 import be.kdg.sa.simulator.simulation.progress.listeners.SimulationProgressListener;
@@ -15,10 +17,18 @@ public class RandomSimulatorExecuter {
 	
 	private final List<SimulationProgressListener> simulationProgressListeners;
 	private final RandomSimulatorActionExecuter randomSimulatorActionExecuter;
+	private final RandomSimulationDelayGenerator randomSimulationDelayGenerator;
+	private final RandomSimulationFinalizer randomSimulationFinalizer;
+	private final RandomSimulationValidUserIdProvider randomSimulationValidUserIdProvider;
+	private final RandomSimulationValidVehicleIdProvider randomSimulationValidVehicleIdProvider;
 	
-	public RandomSimulatorExecuter (List<SimulationProgressListener> simulationProgressListeners, RandomSimulatorActionExecuter randomSimulatorActionExecuter) {
+	public RandomSimulatorExecuter (List<SimulationProgressListener> simulationProgressListeners, RandomSimulatorActionExecuter randomSimulatorActionExecuter, RandomSimulationDelayGenerator randomSimulationDelayGenerator, RandomSimulationFinalizer randomSimulationFinalizer, RandomSimulationValidUserIdProvider randomSimulationValidUserIdProvider, RandomSimulationValidVehicleIdProvider randomSimulationValidVehicleIdProvider) {
 		this.simulationProgressListeners = simulationProgressListeners;
 		this.randomSimulatorActionExecuter = randomSimulatorActionExecuter;
+		this.randomSimulationDelayGenerator = randomSimulationDelayGenerator;
+		this.randomSimulationFinalizer = randomSimulationFinalizer;
+		this.randomSimulationValidUserIdProvider = randomSimulationValidUserIdProvider;
+		this.randomSimulationValidVehicleIdProvider = randomSimulationValidVehicleIdProvider;
 	}
 	
 	public void executeSimulation(SimulationSettings simulationSettings) {
@@ -39,13 +49,18 @@ public class RandomSimulatorExecuter {
 	}
 	
 	void executeSimulationThread (SimulationSettings simulationSettings, SimulationProgress progress) {
-		var context = new RandomSimulationContext (simulationSettings);
+		var validUserIds = randomSimulationValidUserIdProvider.getValidUserIds ();
+		var validVehicleIds = randomSimulationValidVehicleIdProvider.getValidVehicleIds ();
+		var context = new RandomSimulationContext (simulationSettings, validVehicleIds, validUserIds);
 		progress.updateProgress ("Starting simulation", context.getPercentage ());
 		
 		while (context.canExecute ()) {
-			randomSimulatorActionExecuter.executeRandomAction (context);
+			var actionOutput = randomSimulatorActionExecuter.executeRandomAction (context);
+			progress.updateProgress (actionOutput, context.getPercentage ());
+			randomSimulationDelayGenerator.getRandomSimulationDelay (simulationSettings).awaitDelay ();
 		}
 		
+		randomSimulationFinalizer.finalizeSimulation (context);
 		
 		progress.updateProgress ("Simulation finished", context.getPercentage ());
 		onSimulationFinished ();

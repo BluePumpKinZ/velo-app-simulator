@@ -16,6 +16,6 @@ public class SimulationSettingsStartupLoader {
 	
 	@PostConstruct
 	public void loadSettings () {
-		settingService.getSettingValues ();
+		settingService.getSimulationSettings ();
 	}
 }

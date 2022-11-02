@@ -22,7 +22,7 @@ public class MvcSettingsController {
 	
 	@GetMapping ()
 	public String settings (Model model) {
-		model.addAttribute ("simSettings", settingService.getSettingValues ());
+		model.addAttribute ("simSettings", settingService.getSimulationSettings ());
 		return "settings";
 	}
 	
@@ -30,7 +30,7 @@ public class MvcSettingsController {
 	public String updateSettings (@ModelAttribute("simSettings") SimulationSettings simSettings, BindingResult result, Model model) {
 		if (result.hasErrors ())
 			return "settings";
-		settingService.setSettingValues (simSettings);
+		settingService.setSimulationSettings (simSettings);
 		return "redirect:/settings";
 	}
 
