@@ -18,7 +18,6 @@ public class RandomSimulationContext {
 	private final List<Integer> validVehicleIds;
 	private final List<Integer> validUserIds;
 	
-	
 	public RandomSimulationContext (SimulationSettings settings, List<Integer> validVehicleIds, List<Integer> validUserIds) {
 		this.settings = settings;
 		this.validVehicleIds = validVehicleIds;

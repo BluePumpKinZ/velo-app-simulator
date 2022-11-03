@@ -7,7 +7,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="../static/css/index.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="/js/websocket.js"></script>
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+
 </head>
 <body>
 
@@ -22,7 +26,7 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li><a href="../static/index.html">Home</a></li>
+                <li><a href="/">Home</a></li>
                 <li class="active"><a href="random-simulation.html">Genereer x Random</a></li>
                 <li><a href="../static/simulator-generator.html">Genereer x Generator</a></li>
             </ul>
@@ -102,8 +106,8 @@
             </form>
             <hr>
             <h3>Console</h3>
-            <label for="result">Here you can see the result of the simulation.</label>
-            <textarea class="form-control" rows="5" id="result" name="result" readonly></textarea>
+            <p>Here you can see the result of the simulation.</p>
+            <div class="consoleOutput form-control" id="consoleOutput"></div>
         </div>
     </div>
 </div>

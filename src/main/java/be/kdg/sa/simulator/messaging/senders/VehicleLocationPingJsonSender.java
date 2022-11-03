@@ -6,10 +6,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Component;
 
-/**
- * Jonas Leijzen
- * 1/11/2022
- */
 @Component
 public class VehicleLocationPingJsonSender extends JsonSender<VehicleLocationPingMessage, SenderQueueConfig> {
 	

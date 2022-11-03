@@ -1,4 +1,4 @@
-package be.kdg.sa.simulator.controllers;
+package be.kdg.sa.simulator.controllers.rest;
 
 import be.kdg.sa.simulator.exceptions.CommandExecutionError;
 import be.kdg.sa.simulator.services.CommandService;
@@ -7,11 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-/**
- * Jonas Leijzen
- * 26/10/2022
- */
 
 @RestController
 @RequestMapping (path = "/api/v1/commands")

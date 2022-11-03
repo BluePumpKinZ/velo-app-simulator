@@ -34,3 +34,14 @@ footer {
         height: auto;
     }
 }
+
+.consoleOutput {
+    background-color: #eee;
+    font-family: monospace;
+    font-size: 12px;
+    padding: 5px;
+    margin: 5px;
+    border: 1px solid #ddd;
+    height: 200px;
+    overflow-y: auto;
+}

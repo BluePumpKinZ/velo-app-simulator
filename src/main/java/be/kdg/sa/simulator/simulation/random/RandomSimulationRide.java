@@ -4,10 +4,6 @@ import lombok.Getter;
 
 import java.util.Objects;
 
-/**
- * Jonas Leijzen
- * 2/11/2022
- */
 @Getter
 public final class RandomSimulationRide {
 	private int id;
