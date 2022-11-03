@@ -26,9 +26,6 @@ public class MvcRandomSimulationController {
 	private final SimulationService randomSimulationService;
 	private final Logger logger = LoggerFactory.getLogger (MvcRandomSimulationController.class);
 	
-	private final Path uploadResourceDir = Paths.get ("static/upload");
-	private final Path uploadDir = Paths.get ("src/main/resources", uploadResourceDir.toString ());
-	
 	public MvcRandomSimulationController (RandomSimulatorSettingService randomSimulatorSettingService, SimulationService randomSimulationService) {
 		this.randomSimulatorSettingService = randomSimulatorSettingService;
 		this.randomSimulationService = randomSimulationService;
