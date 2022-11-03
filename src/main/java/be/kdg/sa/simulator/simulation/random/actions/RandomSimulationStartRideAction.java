@@ -25,7 +25,7 @@ public class RandomSimulationStartRideAction implements RandomSimulationAction {
 	
 	@Override
 	public boolean doesApply (RandomSimulationContext context) {
-		return false;
+		return context.getRideCount () < context.getSettings ().getConcurrentRides ();
 	}
 	
 	@Override

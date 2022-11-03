@@ -7,8 +7,14 @@ import org.springframework.stereotype.Service;
 public class SimulationService {
 	
 	private final RandomSimulatorExecuter randomSimulatorExecuter;
+	private final SettingService settingService;
 	
-	public SimulationService (RandomSimulatorExecuter randomSimulatorExecuter) {
+	public SimulationService (RandomSimulatorExecuter randomSimulatorExecuter, SettingService settingService) {
 		this.randomSimulatorExecuter = randomSimulatorExecuter;
+		this.settingService = settingService;
+	}
+	
+	public void startSimulation () {
+		randomSimulatorExecuter.executeSimulation (settingService.getSimulationSettings ());
 	}
 }

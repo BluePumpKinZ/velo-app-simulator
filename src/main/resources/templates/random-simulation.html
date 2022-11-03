@@ -23,7 +23,7 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li><a href="../static/index.html">Home</a></li>
-                <li class="active"><a href="settings.html">Genereer x Random</a></li>
+                <li class="active"><a href="random-simulation.html">Genereer x Random</a></li>
                 <li><a href="../static/simulator-generator.html">Genereer x Generator</a></li>
             </ul>
         </div>
@@ -46,7 +46,7 @@
             <h2>Settings</h2>
             <p>Here you can see the settings of the config file.</p>
             <form th:object="${simSettings}"
-                  th:action="@{/settings/update}"
+                  th:action="@{/random-simulation/update}"
                   method="post">
                 <div class="form-row">
                     <div class="form-group col-md-6">
@@ -98,10 +98,8 @@
                                min="-180" max="180" step="0.01">
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Check & Apply</button>
+                <button type="submit" class="btn btn-primary">Apply & Run</button>
             </form>
-            <p class="d-none text-primary">20 instructies geladen</p>
-            <p class="d-none text-danger">Fout: x</p>
             <hr>
             <h3>Console</h3>
             <label for="result">Here you can see the result of the simulation.</label>

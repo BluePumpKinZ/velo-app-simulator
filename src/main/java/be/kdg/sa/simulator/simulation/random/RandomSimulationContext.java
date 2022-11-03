@@ -3,6 +3,7 @@ package be.kdg.sa.simulator.simulation.random;
 import be.kdg.sa.simulator.exceptions.NoValidIdsAvailableException;
 import be.kdg.sa.simulator.simulation.settings.SimulationSettings;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +36,7 @@ public class RandomSimulationContext {
 	}
 	
 	public int getPercentage () {
-		return 100 * (LocalDateTime.now ().getSecond () - startTime.getSecond ()) / settings.getSeconds ();
+		return (int)Duration.between (startTime, LocalDateTime.now ()).getSeconds () * 100 / settings.getSeconds ();
 	}
 	
 	public int getRideCount () {
@@ -51,7 +52,7 @@ public class RandomSimulationContext {
 				.filter (userId -> rides.stream ().noneMatch (ride -> ride.getUserId () == userId))
 				.findFirst ().orElseThrow (()
 						-> new NoValidIdsAvailableException ("No valid user ids available. Consider lowering the amount of concurrent rides"));
-		var randomSimulationRide = new RandomSimulationRide (currentRideId++, validVehicleId, validUserId);
+		var randomSimulationRide = new RandomSimulationRide (currentRideId++, validUserId, validVehicleId);
 		rides.add (randomSimulationRide);
 		return randomSimulationRide;
 	}

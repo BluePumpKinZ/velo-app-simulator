@@ -35,6 +35,7 @@ public class RandomSimulationEndRideAction implements RandomSimulationAction {
 			rideService.endUndockedRide (ride.getVehicleId (), ride.getUserId (), false,
 					randomSimulationLocationGenerator.generateLatitude (context.getSettings ()),
 					randomSimulationLocationGenerator.generateLongitude (context.getSettings ()));
+			context.removeRide (ride);
 			return String.format ("Ended ride with vehicle %s and user %s", ride.getVehicleId (), ride.getUserId ());
 		} catch (IOException e) {
 			return String.format ("Failed to end ride with vehicle %s and user %s", ride.getVehicleId (), ride.getUserId ());

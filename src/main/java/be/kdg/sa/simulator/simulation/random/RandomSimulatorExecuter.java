@@ -13,7 +13,7 @@ import java.util.List;
 @Component
 public class RandomSimulatorExecuter {
 	
-	private static SimulationProgress progress = new SimulationProgress ();
+	private static SimulationProgress progress;
 	
 	private final List<SimulationProgressListener> simulationProgressListeners;
 	private final RandomSimulatorActionExecuter randomSimulatorActionExecuter;
@@ -49,21 +49,24 @@ public class RandomSimulatorExecuter {
 	}
 	
 	void executeSimulationThread (SimulationSettings simulationSettings, SimulationProgress progress) {
-		var validUserIds = randomSimulationValidUserIdProvider.getValidUserIds ();
-		var validVehicleIds = randomSimulationValidVehicleIdProvider.getValidVehicleIds ();
-		var context = new RandomSimulationContext (simulationSettings, validVehicleIds, validUserIds);
-		progress.updateProgress ("Starting simulation", context.getPercentage ());
-		
-		while (context.canExecute ()) {
-			var actionOutput = randomSimulatorActionExecuter.executeRandomAction (context);
-			progress.updateProgress (actionOutput, context.getPercentage ());
-			randomSimulationDelayGenerator.getRandomSimulationDelay (simulationSettings).awaitDelay ();
+		try {
+			var validUserIds = randomSimulationValidUserIdProvider.getValidSimulationUserIds ();
+			var validVehicleIds = randomSimulationValidVehicleIdProvider.getValidSimulationVehicleIds ();
+			var context = new RandomSimulationContext (simulationSettings, validVehicleIds, validUserIds);
+			progress.updateProgress ("Starting simulation", context.getPercentage ());
+			
+			while (context.canExecute ()) {
+				var actionOutput = randomSimulatorActionExecuter.executeRandomAction (context);
+				progress.updateProgress (actionOutput, context.getPercentage ());
+				randomSimulationDelayGenerator.getRandomSimulationDelay (simulationSettings).awaitDelay ();
+			}
+			
+			randomSimulationFinalizer.finalizeSimulation (context);
+			
+			progress.updateProgress ("Simulation finished", context.getPercentage ());
+		} finally {
+			onSimulationFinished ();
 		}
-		
-		randomSimulationFinalizer.finalizeSimulation (context);
-		
-		progress.updateProgress ("Simulation finished", context.getPercentage ());
-		onSimulationFinished ();
 	}
 	
 }
