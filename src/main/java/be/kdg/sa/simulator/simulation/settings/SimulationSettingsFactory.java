@@ -12,18 +12,23 @@ public class SimulationSettingsFactory {
 	private static final Logger logger = LoggerFactory.getLogger (SimulationSettingsFactory.class);
 	
 	public static SimulationSettings fromFile (String settingsPath) {
-		SimulationSettings simulationSettingValues = new SimulationSettings ();
 		try {
 			File file = ResourceUtils.getFile (String.format ("classpath:%s", settingsPath));
-			InputStream inputStream = new FileInputStream (file);
-			Properties properties = new Properties ();
-			properties.load (inputStream);
-			loadPropertiesIntoSettingValues (simulationSettingValues, properties);
-			inputStream.close ();
+			var simulationSettingValues = fromInputStream (new FileInputStream (file));
 			logger.info (String.format ("Settings loaded from %s", settingsPath));
+			return simulationSettingValues;
 		} catch (IOException e) {
 			logger.error ("Error while reading settings file", e);
+			return new SimulationSettings ();
 		}
+	}
+	
+	public static SimulationSettings fromInputStream (InputStream inputStream) throws IOException {
+		var simulationSettingValues = new SimulationSettings ();
+		Properties properties = new Properties ();
+		properties.load (inputStream);
+		loadPropertiesIntoSettingValues (simulationSettingValues, properties);
+		inputStream.close ();
 		return simulationSettingValues;
 	}
 	

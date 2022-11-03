@@ -39,7 +39,7 @@
         <div class="col-sm-8 col-sm-offset-2 text-left">
             <h1>Simulator Velo x Random</h1>
             <p>Upload a config file here.</p>
-            <form action="/simulator-random" method="post" enctype="multipart/form-data">
+            <form th:action="@{/random-simulation/updatesettings/file}" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="file">File:</label>
                     <input type="file" class="form-control" id="file" name="file" required>
@@ -50,7 +50,7 @@
             <h2>Settings</h2>
             <p>Here you can see the settings of the config file.</p>
             <form th:object="${simSettings}"
-                  th:action="@{/random-simulation/update}"
+                  th:action="@{/random-simulation/updatesettings/values}"
                   method="post">
                 <div class="form-row">
                     <div class="form-group col-md-6">
