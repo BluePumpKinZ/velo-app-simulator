@@ -1,4 +1,4 @@
-package be.kdg.sa.simulator.simulation.settings;
+package be.kdg.sa.simulator.simulation.random.settings;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,11 +7,11 @@ import org.springframework.util.ResourceUtils;
 import java.io.*;
 import java.util.Properties;
 
-public class SimulationSettingsFactory {
+public class RandomSimulationSettingsFactory {
 	
-	private static final Logger logger = LoggerFactory.getLogger (SimulationSettingsFactory.class);
+	private static final Logger logger = LoggerFactory.getLogger (RandomSimulationSettingsFactory.class);
 	
-	public static SimulationSettings fromFile (String settingsPath) {
+	public static RandomSimulationSettings fromFile (String settingsPath) {
 		try {
 			File file = ResourceUtils.getFile (String.format ("classpath:%s", settingsPath));
 			var simulationSettingValues = fromInputStream (new FileInputStream (file));
@@ -19,12 +19,12 @@ public class SimulationSettingsFactory {
 			return simulationSettingValues;
 		} catch (IOException e) {
 			logger.error ("Error while reading settings file", e);
-			return new SimulationSettings ();
+			return new RandomSimulationSettings ();
 		}
 	}
 	
-	public static SimulationSettings fromInputStream (InputStream inputStream) throws IOException {
-		var simulationSettingValues = new SimulationSettings ();
+	public static RandomSimulationSettings fromInputStream (InputStream inputStream) throws IOException {
+		var simulationSettingValues = new RandomSimulationSettings ();
 		Properties properties = new Properties ();
 		properties.load (inputStream);
 		loadPropertiesIntoSettingValues (simulationSettingValues, properties);
@@ -32,7 +32,7 @@ public class SimulationSettingsFactory {
 		return simulationSettingValues;
 	}
 	
-	private static void loadPropertiesIntoSettingValues (SimulationSettings simulationSettingValues, Properties properties) {
+	private static void loadPropertiesIntoSettingValues (RandomSimulationSettings simulationSettingValues, Properties properties) {
 		simulationSettingValues.seconds = Integer.parseInt (properties.getProperty ("seconds"));
 		simulationSettingValues.concurrentRides = Integer.parseInt (properties.getProperty ("concurrentRides"));
 		simulationSettingValues.delayDuration = Integer.parseInt (properties.getProperty ("delayDuration"));

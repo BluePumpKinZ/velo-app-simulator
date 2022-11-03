@@ -1,7 +1,7 @@
 package be.kdg.sa.simulator.simulation.random;
 
 import be.kdg.sa.simulator.exceptions.NoValidIdsAvailableException;
-import be.kdg.sa.simulator.simulation.settings.SimulationSettings;
+import be.kdg.sa.simulator.simulation.random.settings.RandomSimulationSettings;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -11,14 +11,14 @@ import java.util.List;
 public class RandomSimulationContext {
 	
 	private final LocalDateTime startTime;
-	private final SimulationSettings settings;
+	private final RandomSimulationSettings settings;
 	private final List<RandomSimulationRide> rides;
 	private int currentRideId;
 	
 	private final List<Integer> validVehicleIds;
 	private final List<Integer> validUserIds;
 	
-	public RandomSimulationContext (SimulationSettings settings, List<Integer> validVehicleIds, List<Integer> validUserIds) {
+	public RandomSimulationContext (RandomSimulationSettings settings, List<Integer> validVehicleIds, List<Integer> validUserIds) {
 		this.settings = settings;
 		this.validVehicleIds = validVehicleIds;
 		this.validUserIds = validUserIds;
@@ -26,7 +26,7 @@ public class RandomSimulationContext {
 		rides = new ArrayList<> ();
 	}
 	
-	public SimulationSettings getSettings () {
+	public RandomSimulationSettings getSettings () {
 		return settings;
 	}
 	

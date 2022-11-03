@@ -1,6 +1,6 @@
 package be.kdg.sa.simulator.simulation.random.generators;
 
-import be.kdg.sa.simulator.simulation.settings.SimulationSettings;
+import be.kdg.sa.simulator.simulation.random.settings.RandomSimulationSettings;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -24,14 +24,14 @@ public class RandomSimulationDelayGenerator {
 		
 	}
 	
-	public RandomSimulationDelay getRandomSimulationDelay (SimulationSettings simulationSettings) {
-		var delayMillis = getRandomDelayMillis (simulationSettings);
+	public RandomSimulationDelay getRandomSimulationDelay (RandomSimulationSettings randomSimulationSettings) {
+		var delayMillis = getRandomDelayMillis (randomSimulationSettings);
 		return new RandomSimulationDelay (delayMillis);
 	}
 	
-	private long getRandomDelayMillis (SimulationSettings simulationSettings) {
-		var minDelayMillis = simulationSettings.getDelayDuration () - simulationSettings.getDelayVariation ();
-		var maxDelayMillis = simulationSettings.getDelayDuration () + simulationSettings.getDelayVariation ();
+	private long getRandomDelayMillis (RandomSimulationSettings randomSimulationSettings) {
+		var minDelayMillis = randomSimulationSettings.getDelayDuration () - randomSimulationSettings.getDelayVariation ();
+		var maxDelayMillis = randomSimulationSettings.getDelayDuration () + randomSimulationSettings.getDelayVariation ();
 		var delayMillis = Math.round (Math.random () * (maxDelayMillis - minDelayMillis) + minDelayMillis);
 		return Math.max (delayMillis, 0);
 	}

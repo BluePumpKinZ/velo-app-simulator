@@ -3,7 +3,7 @@ package be.kdg.sa.simulator.simulation.random;
 import be.kdg.sa.simulator.simulation.random.generators.RandomSimulationDelayGenerator;
 import be.kdg.sa.simulator.simulation.random.providers.RandomSimulationValidUserIdProvider;
 import be.kdg.sa.simulator.simulation.random.providers.RandomSimulationValidVehicleIdProvider;
-import be.kdg.sa.simulator.simulation.settings.SimulationSettings;
+import be.kdg.sa.simulator.simulation.random.settings.RandomSimulationSettings;
 import be.kdg.sa.simulator.simulation.progress.SimulationProgress;
 import be.kdg.sa.simulator.simulation.progress.listeners.SimulationProgressListener;
 import org.springframework.stereotype.Component;
@@ -31,7 +31,7 @@ public class RandomSimulatorExecuter {
 		this.randomSimulationValidVehicleIdProvider = randomSimulationValidVehicleIdProvider;
 	}
 	
-	public void executeSimulation(SimulationSettings simulationSettings) {
+	public void executeSimulation(RandomSimulationSettings randomSimulationSettings) {
 		
 		if (progress != null) {
 			throw new IllegalStateException ("Simulation is already running");
@@ -40,7 +40,7 @@ public class RandomSimulatorExecuter {
 		progress = new SimulationProgress ();
 		simulationProgressListeners.forEach (progress::addUpdateListener);
 		
-		new Thread (() -> executeSimulationThread (simulationSettings, progress)).start ();
+		new Thread (() -> executeSimulationThread (randomSimulationSettings, progress)).start ();
 		
 	}
 	
@@ -48,17 +48,17 @@ public class RandomSimulatorExecuter {
 		progress = null;
 	}
 	
-	void executeSimulationThread (SimulationSettings simulationSettings, SimulationProgress progress) {
+	void executeSimulationThread (RandomSimulationSettings randomSimulationSettings, SimulationProgress progress) {
 		try {
 			var validUserIds = randomSimulationValidUserIdProvider.getValidSimulationUserIds ();
 			var validVehicleIds = randomSimulationValidVehicleIdProvider.getValidSimulationVehicleIds ();
-			var context = new RandomSimulationContext (simulationSettings, validVehicleIds, validUserIds);
+			var context = new RandomSimulationContext (randomSimulationSettings, validVehicleIds, validUserIds);
 			progress.updateProgress ("Starting simulation", context.getPercentage ());
 			
 			while (context.canExecute ()) {
 				var actionOutput = randomSimulatorActionExecuter.executeRandomAction (context);
 				progress.updateProgress (actionOutput, context.getPercentage ());
-				randomSimulationDelayGenerator.getRandomSimulationDelay (simulationSettings).awaitDelay ();
+				randomSimulationDelayGenerator.getRandomSimulationDelay (randomSimulationSettings).awaitDelay ();
 			}
 			
 			randomSimulationFinalizer.finalizeSimulation (context);

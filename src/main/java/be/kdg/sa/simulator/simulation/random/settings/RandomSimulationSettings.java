@@ -1,11 +1,11 @@
-package be.kdg.sa.simulator.simulation.settings;
+package be.kdg.sa.simulator.simulation.random.settings;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class SimulationSettings {
+public class RandomSimulationSettings {
 	
 	public int seconds;
 	public int concurrentRides;
@@ -16,7 +16,7 @@ public class SimulationSettings {
 	public double minLongitude;
 	public double maxLongitude;
 	
-	public SimulationSettings () {
+	public RandomSimulationSettings () {
 	}
 	
 }
