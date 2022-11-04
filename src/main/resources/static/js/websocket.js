@@ -14,9 +14,6 @@ function connect() {
 
 function showSimulationUpdate(update) {
 
-    if (consoleOutput.innerHTML === "Loading...")
-        consoleOutput.innerHTML = "";
-
     const outputLineHTML = `<span class="text-success">${update.timestamp.substring(0, 22)}</span>
 <span class="text-info">${update.message}</span>
 <span>${update.progressPercentage}%</span><br>`;
@@ -25,6 +22,5 @@ function showSimulationUpdate(update) {
 
 document.addEventListener("DOMContentLoaded", function (event) {
     consoleOutput = document.getElementById("consoleOutput");
-    consoleOutput.innerHTML = "Loading...";
     connect();
 });
