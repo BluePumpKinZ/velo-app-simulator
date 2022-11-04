@@ -5,7 +5,7 @@ import be.kdg.sa.simulator.models.vehicles.VehicleCall;
 
 public abstract class UnlockVehicleCall extends VehicleCall {
 	
-	private final int userId;
+	private int userId;
 	
 	protected UnlockVehicleCall (int vehicleId, int userId) {
 		super (vehicleId);
@@ -14,5 +14,9 @@ public abstract class UnlockVehicleCall extends VehicleCall {
 	
 	public int getUserId () {
 		return userId;
+	}
+	
+	public void setUserId (int userId) {
+		this.userId = userId;
 	}
 }

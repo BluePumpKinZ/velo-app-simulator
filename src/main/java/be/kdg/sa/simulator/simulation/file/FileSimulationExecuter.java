@@ -2,6 +2,7 @@ package be.kdg.sa.simulator.simulation.file;
 
 import be.kdg.sa.simulator.services.CommandService;
 import be.kdg.sa.simulator.simulation.file.converters.FileSimulationCommandProvider;
+import be.kdg.sa.simulator.simulation.progress.SimulationLoadDelay;
 import be.kdg.sa.simulator.simulation.progress.SimulationProgress;
 import be.kdg.sa.simulator.simulation.progress.listeners.SimulationProgressListener;
 import org.springframework.stereotype.Component;
@@ -17,11 +18,13 @@ public class FileSimulationExecuter {
 	private final List<SimulationProgressListener> simulationProgressListeners;
 	private final CommandService commandService;
 	private final FileSimulationCommandProvider fileSimulationCommandProvider;
+	private final SimulationLoadDelay simulationLoadDelay;
 	
-	public FileSimulationExecuter (CommandService commandService, List<SimulationProgressListener> simulationProgressListeners, FileSimulationCommandProvider fileSimulationCommandProvider) {
+	public FileSimulationExecuter (CommandService commandService, List<SimulationProgressListener> simulationProgressListeners, FileSimulationCommandProvider fileSimulationCommandProvider, SimulationLoadDelay simulationLoadDelay) {
 		this.commandService = commandService;
 		this.simulationProgressListeners = simulationProgressListeners;
 		this.fileSimulationCommandProvider = fileSimulationCommandProvider;
+		this.simulationLoadDelay = simulationLoadDelay;
 	}
 	
 	public void executeSimulation (InputStream fileInputStream) {
@@ -43,14 +46,21 @@ public class FileSimulationExecuter {
 	
 	void executeSimulationThread (InputStream fileInputStream, SimulationProgress progress) {
 		try {
+			
+			simulationLoadDelay.delay ();
+			
 			var allCommands = fileSimulationCommandProvider.getCommands (fileInputStream);
 			var context = new FileSimulationContext (allCommands);
 			progress.updateProgress ("Starting simulation", context.getPercentage ());
 			
 			while (context.canExecute ()) {
-				var command = context.getNextCommand ();
-				var commandResult = commandService.executeCommand (command);
-				progress.updateProgress (commandResult, context.getPercentage ());
+				try {
+					var command = context.getNextCommand ();
+					var commandResult = commandService.executeCommand (command);
+					progress.updateProgress (commandResult, context.getPercentage ());
+				} catch (Exception e) {
+					progress.updateProgress (e.getMessage (), context.getPercentage ());
+				}
 			}
 			
 			progress.updateProgress ("Finished simulation", context.getPercentage ());
