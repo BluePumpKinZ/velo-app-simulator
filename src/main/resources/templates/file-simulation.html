@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Simulator Generator</title>
+  <title>File Simulation</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -26,8 +26,8 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li><a href="/">Home</a></li>
-        <li><a href="/random-simulation">Genereer x Random</a></li>
-        <li class="active"><a href="/file-simulation">Genereer x Generator</a></li>
+        <li><a href="/random-simulation">Random Simulation</a></li>
+        <li class="active"><a href="/file-simulation">File Simulation</a></li>
       </ul>
     </div>
   </div>
@@ -37,7 +37,7 @@
   <div class="row content">
     <div class="col-sm-8 col-sm-offset-2 text-left">
       <h1>Simulator Velo x Generator</h1>
-      <p>Upload a simulate rides file here.</p>
+      <p>Upload a simulation file here. (check the homepage for an example file)</p>
       <form th:action="@{/file-simulation/simulate}" method="post" enctype="multipart/form-data">
         <div class="form-group">
           <label for="file">File:</label>

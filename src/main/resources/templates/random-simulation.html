@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Simulator Random</title>
+    <title>Random Simulation</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -27,8 +27,8 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li><a href="/">Home</a></li>
-                <li class="active"><a href="/random-simulation">Genereer x Random</a></li>
-                <li><a href="/file-simulation">Genereer x Generator</a></li>
+                <li class="active"><a href="/random-simulation">Random Simulation</a></li>
+                <li><a href="/file-simulation">File Simulation</a></li>
             </ul>
         </div>
     </div>
@@ -38,13 +38,13 @@
     <div class="row content">
         <div class="col-sm-8 col-sm-offset-2 text-left">
             <h1>Simulator Velo x Random</h1>
-            <p>Upload a config file here.</p>
+            <p>Upload a config file here. (check the homepage for an example file)</p>
             <form th:action="@{/random-simulation/updatesettings/file}" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="file">File:</label>
                     <input type="file" class="form-control" id="file" name="file" required>
                 </div>
-                <button type="submit" class="btn btn-default">Haal settings op</button>
+                <button type="submit" class="btn btn-default">Retreive Settings</button>
             </form>
             <hr>
             <h2>Settings</h2>
@@ -54,50 +54,50 @@
                   method="post">
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="ipTimeperiod">Tijdsperiode van generatie in seconden</label>
+                        <label for="ipTimeperiod">Simulation time (seconds)</label>
                         <input th:field="*{seconds}" type="number" class="form-control" id="ipTimeperiod"
                                min="0" max="3600">
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="ipAantalUsers">Aantal users die in dezelfde periode rides uitvoeren</label>
+                        <label for="ipAantalUsers">Concurrent users</label>
                         <input th:field="*{concurrentRides}" type="number" class="form-control" id="ipAantalUsers"
                                min="0" max="1000">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6 ">
-                        <label for="ipMessageDelay">Gemiddeld delay tussen de berichten</label>
+                        <label for="ipMessageDelay">Average message delay</label>
                         <input th:field="*{delayDuration}" type="number" class="form-control" id="ipMessageDelay"
                                min="0" max="10000">
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="ipDelayVariation">Grootte van random variatie op dit delay</label>
+                        <label for="ipDelayVariation">Message delay variation</label>
                         <input th:field="*{delayVariation}" type="number" class="form-control" id="ipDelayVariation"
                                min="0" max="5000">
                     </div>
                 </div>
-                <label>latitude range (random generatie binnen deze grenzen)</label>
+                <label>Latitude range</label>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="ipLatitudeRangeStart">min</label>
+                        <label for="ipLatitudeRangeStart">Min</label>
                         <input th:field="*{minLatitude}" type="number" class="form-control" id="ipLatitudeRangeStart"
                                min="-90" max="90" step="0.01">
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="ipLatitudeRangeEnd">max</label>
+                        <label for="ipLatitudeRangeEnd">Max</label>
                         <input th:field="*{maxLatitude}" type="number" class="form-control" id="ipLatitudeRangeEnd"
                                min="-90" max="90" step="0.01">
                     </div>
                 </div>
-                <label>longitude range (random generatie binnen deze grenzen)</label>
+                <label>Longitude range</label>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="ipLongitudeRangeStart">min</label>
+                        <label for="ipLongitudeRangeStart">Min</label>
                         <input th:field="*{minLongitude}" type="number" class="form-control" id="ipLongitudeRangeStart"
                                min="-180" max="180" step="0.01">
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="ipLongitudeRangeEnd">max</label>
+                        <label for="ipLongitudeRangeEnd">Max</label>
                         <input th:field="*{maxLongitude}" type="number" class="form-control" id="ipLongitudeRangeEnd"
                                min="-180" max="180" step="0.01">
                     </div>

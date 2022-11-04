@@ -23,8 +23,8 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/">Home</a></li>
-                <li><a href="/random-simulation">Genereer x Random</a></li>
-                <li><a href="/file-simulation">Genereer x Generator</a></li>
+                <li><a href="/random-simulation">Random Simulation</a></li>
+                <li><a href="/file-simulation">File Simulation</a></li>
             </ul>
         </div>
     </div>
@@ -32,25 +32,21 @@
 
 <main class="container-fluid text-center">
     <div class="row content">
-        <div class="col-sm-2">
-        </div>
-        <div class="col-sm-8 text-left">
+        <div class="col-sm-8 col-sm-offset-2 text-left">
             <h1>Simulator Velo</h1>
-            <p>De simulator kan 2 types van simulaties draaien: file en random.
-                In een file simulatie USID9 worden de events (zie bovenstaande tabel) uitgelezen uit een CSV
-                bestand. Hierin staat per event een lijn met de event data en een delay. De delay (in millis) bepaalt
-                hoe lang er na het vorige event moet gewacht worden. USID10 De simulator leest deze file en voert
-                de nodige acties uit (API calls of messages op de queue zetten).</p>
+            <p>The simulator can run 2 types of simulations: file and random.
+                In a file simulation, the events are read from a CSV
+                file. For each event, this file contains a line with the event data and a delay. The delay (in millis) determines
+                how long to wait after the previous event. The simulator reads this file and executes
+                the necessary actions (API calls or putting messages on the queue).</p>
             <p>
-                Een random simulatie is bedoeld voor bv. performance testen. USID12 Deze worden niet uit een file
-                gelezen maar random gegenereerd volgens default instellingen die uit een configuratiebestand
-                worden gelezen</p>
+                A random simulation is intended for e.g. performance tests. These are not read from a file
+                but randomly generated according to default settings read from a configuration file.
+                are read</p>
             <hr>
-            <h3>Download de voorbeeldbestanden hier:</h3>
+            <h3>Download the example files here:</h3>
             <a href="/example.simsettings" download>Config Random bestand</a></br>
             <a href="/examplesimulation.csv" download>Generate bestand</a>
-        </div>
-        <div class="col-sm-2">
         </div>
     </div>
 </main>
