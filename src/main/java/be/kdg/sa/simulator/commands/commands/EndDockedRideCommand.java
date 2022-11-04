@@ -20,7 +20,6 @@ public class EndDockedRideCommand extends SimulatorCommand<EndDockedRideCommand.
 	}
 	
 	public static class EndDockedRideCommandParams extends SimulatorCommandParams {
-		
 		public int vehicleId;
 		public int userId;
 		public boolean defect;
